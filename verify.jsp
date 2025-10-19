@@ -9,9 +9,9 @@ try
 	String uname=request.getParameter("t2");
 	String pwd=request.getParameter("t3");
 
-	Class.forName("oracle.jdbc.driver.OracleDriver");
-Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCL","scott","tiger");
-Statement st=con.createStatement();
+	//Class.forName("oracle.jdbc.driver.OracleDriver");
+//Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCL","scott","tiger");
+//Statement st=con.createStatement();
 
 if(utype.equals("Admin"))
 {
@@ -25,7 +25,7 @@ if(utype.equals("Admin"))
 		out.println("<br><a href=index.jsp>Click Here</a> to back");	
 	}
 }
-else if(utype.equals("Staff"))
+/*else if(utype.equals("Staff"))
 {
 String qry="select *from staff where stid='"+uname+"' and stid='"+pwd+"' and status='Active'";
 	ResultSet rs=st.executeQuery(qry);
@@ -41,7 +41,7 @@ String qry="select *from staff where stid='"+uname+"' and stid='"+pwd+"' and sta
 		out.println("Invalid UserName/password");
 out.println("<br><a href=index.jsp>Click Here</a> to back");	
 	}	
-}
+}*/
 }
 catch(Exception e)
 {
@@ -50,6 +50,7 @@ catch(Exception e)
 %>
 </body>
 </html>
+
 
 
 
