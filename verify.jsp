@@ -1,57 +1,34 @@
+
 <html>
 <body bgcolor="pink" text="blue">
-<%@page import="java.sql.*"%>
-<center><h1>
+<center>
+<h1>
 <%
-try
-{
-	String utype=request.getParameter("t1");
-	String uname=request.getParameter("t2");
-	String pwd=request.getParameter("t3");
+try {
+    String utype = request.getParameter("t1");
+    String uname = request.getParameter("t2");
+    String pwd   = request.getParameter("t3");
 
-	//Class.forName("oracle.jdbc.driver.OracleDriver");
-//Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCL","scott","tiger");
-//Statement st=con.createStatement();
+    // 🔹 Temporarily disabling all database-related logic to avoid ClassNotFoundException
+    // 🔹 No Oracle driver or connection will be attempted here.
 
-if(utype.equals("Admin"))
-{
-	if(uname.equals("Admin") && pwd.equals("Admin"))
-	{
-		response.sendRedirect("AdminPage.jsp");
-	}
-	else
-	{
-		out.println("Invalid UserName/password");
-		out.println("<br><a href=index.jsp>Click Here</a> to back");	
-	}
-}
-/*else if(utype.equals("Staff"))
-{
-String qry="select *from staff where stid='"+uname+"' and stid='"+pwd+"' and status='Active'";
-	ResultSet rs=st.executeQuery(qry);
+    if ("Admin".equalsIgnoreCase(utype)) {
+        if ("Admin".equals(uname) && "Admin".equals(pwd)) {
+            response.sendRedirect("AdminPage.jsp");
+        } else {
+            out.println("Invalid Username/Password");
+            out.println("<br><a href='index.jsp'>Click Here</a> to go back");
+        }
+    } else {
+        out.println("Invalid User Type");
+        out.println("<br><a href='index.jsp'>Click Here</a> to go back");
+    }
 
-	if(rs.next())
-	{
-		session.setAttribute("stid",rs.getString(1));
-		session.setAttribute("stname",rs.getString(2));
-		response.sendRedirect("StaffPage.jsp");
-	}	
-	else
-	{
-		out.println("Invalid UserName/password");
-out.println("<br><a href=index.jsp>Click Here</a> to back");	
-	}	
-}*/
-}
-catch(Exception e)
-{
-	out.println(e);
+} catch (Exception e) {
+    out.println("Error: " + e.getMessage());
 }
 %>
+</h1>
+</center>
 </body>
 </html>
-
-
-
-
-
