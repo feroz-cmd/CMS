@@ -1,7 +1,7 @@
 <html>
-<body style="background-img:url('https://gifdb.com/images/high/brahmi-hmm-nodding-yes-lb8cusvos05seksl.gif')" bgcolor="pink" text="blue">
+<body style="background-image:url('https://gifdb.com/images/high/brahmi-hmm-nodding-yes-lb8cusvos05seksl.gif')" bgcolor="pink" text="blue">
 <form action="verify.jsp">
-<center><h1>COLLEGE MANAGEMENT SYSTEM AND SERVICES
+<center><h1>COLLEGE MANAGEMENT SYSTEM AND SERVICES</center></h1>
 <table border="1" style='position:absolute;top:100pt;left:500pt'>
 	<tr>	<th>User Type</th>
 		<td><select name="t1">
@@ -25,4 +25,5 @@
 </body>
 
 </html>
+
 
