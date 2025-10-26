@@ -13,7 +13,7 @@ try {
     // 🔹 No Oracle driver or connection will be attempted here.
 
     if ("Admin".equalsIgnoreCase(utype)) {
-        if ("Admin".equals(uname) && "Admin".equals(pwd)) {
+        if ("LongVision".equals(uname) && "LongVision@123".equals(pwd)) {
             response.sendRedirect("AdminPage.jsp");
         } else {
             out.println("Invalid Username/Password");
@@ -32,3 +32,4 @@ try {
 </center>
 </body>
 </html>
+
