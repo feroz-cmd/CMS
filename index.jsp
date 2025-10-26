@@ -1,5 +1,5 @@
 <html>
-<body bgcolor="pink" text="blue">
+<body style="background-img:url('https://gifdb.com/images/high/brahmi-hmm-nodding-yes-lb8cusvos05seksl.gif')" bgcolor="pink" text="blue">
 <form action="verify.jsp">
 <center><h1>COLLEGE MANAGEMENT SYSTEM
 <table border="1" style='position:absolute;top:100pt;left:500pt'>
@@ -23,4 +23,5 @@
 <input type="submit" value="LOGIN" style='position:absolute;top:160pt;left:560pt'>
 </form>
 </body>
+
 </html>
