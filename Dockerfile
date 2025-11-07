@@ -7,6 +7,9 @@ RUN rm -rf /usr/local/tomcat/webapps/ROOT
 # Copy your JSP project files into Tomcat’s webapps directory
 COPY . /usr/local/tomcat/webapps/ROOT
 
+# Copy Oracle JDBC driver into Tomcat's lib directory
+COPY ojdbc8.jar /usr/local/tomcat/lib/
+
 # Expose default Tomcat port (for local dev)
 EXPOSE 8080
 
