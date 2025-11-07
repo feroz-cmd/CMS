@@ -85,10 +85,10 @@ session.setAttribute("sid", String.valueOf(no));
 <tr>
     <th>Joining Date</th>
     <%
-        SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy");
-        String str = sd.format(new Date());
-        session.setAttribute("date", str); // save joining date in session
-    %>
+    java.text.SimpleDateFormat sd = new java.text.SimpleDateFormat("dd-MM-yyyy");
+    String str = sd.format(new java.util.Date());
+    session.setAttribute("date", str); // save joining date in session
+%>
     <td><input type="text" name="t8" value="<%=str%>" readonly></td>
 </tr>
 </table>
@@ -101,3 +101,4 @@ session.setAttribute("sid", String.valueOf(no));
 </form>
 </body>
 </html>
+
