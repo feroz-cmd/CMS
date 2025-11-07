@@ -1,5 +1,6 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="java.text.*" %>
+<%@ page import="java.io.*" %>
 <html>
 <head>
 <title>Staff Registration Result</title>
@@ -15,16 +16,16 @@ try {
     String s3 = request.getParameter("t3"); // Email
     String s4 = request.getParameter("t4"); // Phone
     String s5 = request.getParameter("t5"); // Photo filename
-    String s6 = request.getParameter("t6"); // DOB
+    String s6 = request.getParameter("t6"); // DOB (yyyy-MM-dd)
     String s7 = request.getParameter("t7"); // Gender
-    String s8 = (String) session.getAttribute("date"); // Joining Date
+    String s8 = (String) session.getAttribute("date"); // Joining Date (yyyy-MM-dd)
 
     // Load PostgreSQL Driver
     Class.forName("org.postgresql.Driver");
 
     // Connect to Render PostgreSQL
     Connection con = DriverManager.getConnection(
-        "jdbc:postgresql://dpg-d46uvfumcj7s73ddk8ug-a:5432/staffdb_vkwf",
+        "jdbc:postgresql://dpg-d46uvfumcj7s73ddk8ug-a.singapore-postgres.render.com:5432/staffdb_vkwf",
         "staffdb_vkwf_user",
         "2jAtPgmq5jRb0IkOaMmdJE8IX89E90NO"
     );
@@ -41,13 +42,22 @@ try {
     pst.setString(4, s4);
     pst.setString(5, s5);
 
-    // Convert dates
+    // Convert DOB string (yyyy-MM-dd) to java.sql.Date
     java.sql.Date dobDate = java.sql.Date.valueOf(s6);
     pst.setDate(6, dobDate);
 
     pst.setString(7, s7);
 
-    java.sql.Date joinDate = java.sql.Date.valueOf(s8);
+    // Convert joining date string to java.sql.Date safely
+    java.sql.Date joinDate;
+    try {
+        joinDate = java.sql.Date.valueOf(s8);
+    } catch (Exception ex) {
+        // fallback if session date was in dd-MM-yyyy format
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd-MM-yyyy");
+        java.util.Date parsed = sdf.parse(s8);
+        joinDate = new java.sql.Date(parsed.getTime());
+    }
     pst.setDate(8, joinDate);
 
     pst.setString(9, "Active");
@@ -67,9 +77,9 @@ try {
 
 } catch (Exception e) {
     out.println("<h3 style='color:red;'>⚠ Error: " + e.getMessage() + "</h3>");
-    // Use StringWriter to display stack trace properly in JSP
-    java.io.StringWriter sw = new java.io.StringWriter();
-    java.io.PrintWriter pw = new java.io.PrintWriter(sw);
+    // ✅ Correct way to print stack trace in JSP
+    StringWriter sw = new StringWriter();
+    PrintWriter pw = new PrintWriter(sw);
     e.printStackTrace(pw);
     out.println("<pre>" + sw.toString() + "</pre>");
 }
