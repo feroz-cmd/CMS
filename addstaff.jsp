@@ -7,7 +7,7 @@
 int no=0;
 try
 {
- Class.forName("oracle.jdbc.driver.OracleDriver");
+ Class.forName("oracle.jdbc.OracleDriver");
 Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCL","scott","tiger");
 Statement st=con.createStatement();
 ResultSet rs=st.executeQuery("select max(stid) from staff");
@@ -68,3 +68,4 @@ java.text.SimpleDateFormat sd=new java.text.SimpleDateFormat("dd-MM-yyyy");
 </form>
 </body>
 </html>
+
