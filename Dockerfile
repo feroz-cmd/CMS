@@ -8,7 +8,8 @@ RUN rm -rf /usr/local/tomcat/webapps/ROOT
 COPY . /usr/local/tomcat/webapps/ROOT
 
 # Copy Oracle JDBC driver into Tomcat's lib directory
-COPY ojdbc8.jar /usr/local/tomcat/lib/
+COPY postgresql-42.7.3.jar /usr/local/tomcat/lib/
+
 
 # Expose default Tomcat port (for local dev)
 EXPOSE 8080
