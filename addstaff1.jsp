@@ -1,12 +1,17 @@
 <%@ page import="java.sql.*" %>
+<%@ page import="java.text.*" %>
 <html>
+<head>
+<title>Staff Registration Result</title>
+</head>
 <body bgcolor="pink" text="blue">
+<center>
 
 <%
 try {
-    // Retrieve session values
-    String s1 = (String) session.getAttribute("sid");
-    String s2 = request.getParameter("t2"); // Staff Name
+    // Retrieve session and form values
+    String s1 = (String) session.getAttribute("sid"); // Staff ID
+    String s2 = request.getParameter("t2"); // Name
     String s3 = request.getParameter("t3"); // Email
     String s4 = request.getParameter("t4"); // Phone
     String s5 = request.getParameter("t5"); // Photo filename (optional)
@@ -14,46 +19,61 @@ try {
     String s7 = request.getParameter("t7"); // Gender
     String s8 = (String) session.getAttribute("date"); // Joining Date
 
-    // Load PostgreSQL driver
+    // Load PostgreSQL Driver
     Class.forName("org.postgresql.Driver");
 
-    // Connect to Render PostgreSQL
+    // Connect to Render PostgreSQL Database
     Connection con = DriverManager.getConnection(
         "jdbc:postgresql://dpg-d46uvfumcj7s73ddk8ug-a:5432/staffdb_vkwf",
         "staffdb_vkwf_user",
         "2jAtPgmq5jRb0IkOaMmdJE8IX89E90NO"
     );
 
-    // Prepare insert query (PostgreSQL syntax)
+    // Prepare SQL Insert Statement
     PreparedStatement pst = con.prepareStatement(
         "INSERT INTO staff (stid, name, email, phone, photo, dob, gender, joining_date, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
     );
 
+    // Set Parameters
     pst.setInt(1, Integer.parseInt(s1));
     pst.setString(2, s2);
     pst.setString(3, s3);
     pst.setString(4, s4);
     pst.setString(5, s5);
-    pst.setString(6, s6);
+
+    // Convert DOB (from HTML date input yyyy-MM-dd) to SQL Date
+    java.sql.Date dobDate = java.sql.Date.valueOf(s6);
+    pst.setDate(6, dobDate);
+
     pst.setString(7, s7);
-    pst.setString(8, s8);
+
+    // Convert Joining Date (stored in session yyyy-MM-dd) to SQL Date
+    java.sql.Date joinDate = java.sql.Date.valueOf(s8);
+    pst.setDate(8, joinDate);
+
     pst.setString(9, "Active");
 
     int rows = pst.executeUpdate();
 
     if (rows > 0) {
-        out.println("<h2>✅ Registered successfully!</h2>");
+        out.println("<h2 style='color:green;'>✅ Registered Successfully!</h2>");
+        out.println("<h3>Staff ID: " + s1 + "</h3>");
+        out.println("<h3>Name: " + s2 + "</h3>");
     } else {
-        out.println("<h2>❌ Registration failed.</h2>");
+        out.println("<h2 style='color:red;'>❌ Registration Failed.</h2>");
     }
 
     pst.close();
     con.close();
+
 } catch (Exception e) {
-    out.println("<h3>Error: " + e.getMessage() + "</h3>");
+    out.println("<h3 style='color:red;'>⚠ Error: " + e.getMessage() + "</h3>");
     e.printStackTrace(out);
 }
 %>
 
+<br><br>
+<a href="addstaff.jsp" style="font-size:18px; color:blue;">⬅ Back to Registration</a>
+</center>
 </body>
 </html>
