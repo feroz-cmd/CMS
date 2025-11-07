@@ -14,7 +14,7 @@ try {
     String s2 = request.getParameter("t2"); // Name
     String s3 = request.getParameter("t3"); // Email
     String s4 = request.getParameter("t4"); // Phone
-    String s5 = request.getParameter("t5"); // Photo filename (optional)
+    String s5 = request.getParameter("t5"); // Photo filename
     String s6 = request.getParameter("t6"); // DOB
     String s7 = request.getParameter("t7"); // Gender
     String s8 = (String) session.getAttribute("date"); // Joining Date
@@ -22,7 +22,7 @@ try {
     // Load PostgreSQL Driver
     Class.forName("org.postgresql.Driver");
 
-    // Connect to Render PostgreSQL Database
+    // Connect to Render PostgreSQL
     Connection con = DriverManager.getConnection(
         "jdbc:postgresql://dpg-d46uvfumcj7s73ddk8ug-a:5432/staffdb_vkwf",
         "staffdb_vkwf_user",
@@ -34,20 +34,19 @@ try {
         "INSERT INTO staff (stid, name, email, phone, photo, dob, gender, joining_date, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
     );
 
-    // Set Parameters
+    // Set parameters
     pst.setInt(1, Integer.parseInt(s1));
     pst.setString(2, s2);
     pst.setString(3, s3);
     pst.setString(4, s4);
     pst.setString(5, s5);
 
-    // Convert DOB (from HTML date input yyyy-MM-dd) to SQL Date
+    // Convert dates
     java.sql.Date dobDate = java.sql.Date.valueOf(s6);
     pst.setDate(6, dobDate);
 
     pst.setString(7, s7);
 
-    // Convert Joining Date (stored in session yyyy-MM-dd) to SQL Date
     java.sql.Date joinDate = java.sql.Date.valueOf(s8);
     pst.setDate(8, joinDate);
 
@@ -68,7 +67,11 @@ try {
 
 } catch (Exception e) {
     out.println("<h3 style='color:red;'>⚠ Error: " + e.getMessage() + "</h3>");
-    e.printStackTrace(out);
+    // Use StringWriter to display stack trace properly in JSP
+    java.io.StringWriter sw = new java.io.StringWriter();
+    java.io.PrintWriter pw = new java.io.PrintWriter(sw);
+    e.printStackTrace(pw);
+    out.println("<pre>" + sw.toString() + "</pre>");
 }
 %>
 
