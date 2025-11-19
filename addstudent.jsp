@@ -38,11 +38,11 @@ session.setAttribute("sid", String.valueOf(no)); // ✅ save staff ID properly
 <center>
 <table border="1" cellpadding="5" cellspacing="0">
 <tr>
-    <th>Staff Id</th>
+    <th>Staudent Id</th>
     <td><input type="text" name="t1" value="<%=no%>" readonly></td>
 </tr>
 <tr>
-    <th>Staff Name</th>
+    <th>Student Name</th>
     <td><input type="text" name="t2" required></td>
 </tr>
 <tr>
