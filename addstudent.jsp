@@ -7,7 +7,7 @@
 <title>Staff Registration</title>
 </head>
 <body bgcolor="pink" text="blue">
-<form action="addstaff1.jsp" method="get">
+<form action="addstudent1.jsp" method="get">
 <center><h1>Staff Registration</h1></center>
 
 <%
