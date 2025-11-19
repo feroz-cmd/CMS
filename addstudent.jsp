@@ -17,11 +17,11 @@ try {
     Connection con = DriverManager.getConnection(
         "jdbc:postgresql://dpg-d46uvfumcj7s73ddk8ug-a.singapore-postgres.render.com:5432/staffdb_vkwf",
         "staffdb_vkwf_user",
-        "2jAtPgmq5jRb0IkOaMmdJE8IX89E90NO"
+        "6RyNW6cVk6qE4ryXKb5MwtcBLHyGgwB7"
     );
 
     Statement st = con.createStatement();
-    ResultSet rs = st.executeQuery("SELECT COALESCE(MAX(stid), 10000) + 1 AS next_id FROM staff");
+    ResultSet rs = st.executeQuery("SELECT COALESCE(MAX(sid), 10000) + 1 AS next_id FROM student");
     if (rs.next()) {
         no = rs.getInt("next_id");
     }
