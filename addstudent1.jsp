@@ -32,7 +32,7 @@ try {
 
     // Prepare SQL Insert Statement
     PreparedStatement pst = con.prepareStatement(
-        "INSERT INTO staff (stid, name, email, phone, photo, dob, gender, joining_date, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        "INSERT INTO student (stid, name, email, phone, photo, dob, gender, joining_date, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
     );
 
     // Set parameters
