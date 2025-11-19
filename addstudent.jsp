@@ -15,7 +15,7 @@ int no = 0;
 try {
     Class.forName("org.postgresql.Driver");
     Connection con = DriverManager.getConnection(
-        "jdbc:postgresql://dpg-d46uvfumcj7s73ddk8ug-a.singapore-postgres.render.com:5432/staffdb_vkwf",
+        "jdbc:postgresql://dpg-d46uvfumcj7s73ddk8ug-a.singapore-postgres.render.com:5432/staffdb_vkwf_wq1l",
         "staffdb_vkwf_user",
         "6RyNW6cVk6qE4ryXKb5MwtcBLHyGgwB7"
     );
