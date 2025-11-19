@@ -25,9 +25,9 @@ try {
 
     // Connect to Render PostgreSQL
     Connection con = DriverManager.getConnection(
-        "jdbc:postgresql://dpg-d46uvfumcj7s73ddk8ug-a.singapore-postgres.render.com:5432/staffdb_vkwf",
+        "jdbc:postgresql://dpg-d46uvfumcj7s73ddk8ug-a.singapore-postgres.render.com:5432/staffdb_vkwf_wq1l",
         "staffdb_vkwf_user",
-        "2jAtPgmq5jRb0IkOaMmdJE8IX89E90NO"
+        "6RyNW6cVk6qE4ryXKb5MwtcBLHyGgwB7"
     );
 
     // Prepare SQL Insert Statement
